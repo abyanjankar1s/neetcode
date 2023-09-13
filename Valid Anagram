@@ -1,0 +1,22 @@
+import java.util.Set;
+import java.util.HashSet;
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        Set<Character> setS = new HashSet<>();
+        Set<Character> setT = new HashSet<>(); 
+
+        for(char c : s.toCharArray()){
+            setS.add(c);
+            }
+        for(char c : t.toCharArray()){
+            setT.add(c);
+        }
+        if(setS.equals(setT)){
+            return true;
+        }
+        else{
+            return false;
+        }
+        }
+    }
