@@ -1,0 +1,66 @@
+/**
+ * @param {number[]} nums - The input array to be sorted.
+ * @return {number[]} - The sorted array.
+ */
+var sortArray = function(nums) {
+    // Call mergeSort function to sort the array nums.
+    return mergeSort(0, nums.length - 1, nums);
+};
+
+// Merge Sort function
+const mergeSort = (left, right, nums) => {
+    // Base case: If left and right indices are equal, the array is already sorted.
+    if (left === right) 
+        return nums; // Return the array as it is
+    
+    // Find the middle index of the array
+    const mid = Math.floor((left + right) / 2);
+
+    // Recursively call mergeSort on left and right halves
+    mergeSort(left, mid, nums);
+    mergeSort(mid + 1, right, nums);
+
+    // Merge the sorted halves
+    return merge(left, mid, right, nums);
+}
+
+// Merge function
+const merge = (left, mid, right, nums) => {
+    // Create two arrays to store elements from the two halves
+    const arr1 = nums.slice(left, mid + 1);
+    const arr2 = nums.slice(mid + 1, right + 1);
+
+    // Initialize pointers for arr1, arr2, and the original array nums
+    let p1 = 0;
+    let p2 = 0;
+    let gp = left;
+
+    // Merge elements from arr1 and arr2 back into nums array in sorted order
+    while (p1 < arr1.length && p2 < arr2.length) {
+        if (arr1[p1] < arr2[p2]) {
+            nums[gp] = arr1[p1]; // Copy element from arr1 to nums
+            p1++; // Move pointer for arr1
+        } else {
+            nums[gp] = arr2[p2]; // Copy element from arr2 to nums
+            p2++; // Move pointer for arr2
+        }
+        gp++; // Move pointer for nums
+    }
+
+    // Copy remaining elements from arr1, if any
+    while (p1 < arr1.length) {
+        nums[gp] = arr1[p1];
+        p1++;
+        gp++;
+    }
+
+    // Copy remaining elements from arr2, if any
+    while (p2 < arr2.length) {
+        nums[gp] = arr2[p2];
+        p2++;
+        gp++;
+    }
+
+    // Return the merged and sorted nums array
+    return nums;
+}
