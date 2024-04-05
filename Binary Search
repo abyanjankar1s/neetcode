@@ -1,0 +1,32 @@
+/**
+ * @param {number[]} nums - The sorted array of numbers to search in.
+ * @param {number} target - The target number to search for.
+ * @return {number} - The index of the target number in the array if found, otherwise -1.
+ */
+var search = function(nums, target) {
+    let L = 0; // Left boundary initialized to the start of the array
+    let R = nums.length - 1; // Right boundary initialized to the end of the array
+
+    // Loop until the left boundary is less than or equal to the right boundary
+    while (L <= R) {
+        let mid = Math.floor((L + R) / 2); // Calculate the midpoint of the array
+
+        // If the midpoint element is equal to the target, return its index
+        if (nums[mid] === target) {
+            return mid;
+        }
+        // If the target is less than the element at the midpoint,
+        // update the right boundary to search the left half of the array
+        else if (target < nums[mid]) {
+            R = mid - 1;
+        }
+        // If the target is greater than the element at the midpoint,
+        // update the left boundary to search the right half of the array
+        else {
+            L = mid + 1;
+        }
+    }
+
+    // If the loop exits without finding the target, return -1
+    return -1;
+};
