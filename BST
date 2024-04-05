@@ -1,0 +1,33 @@
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val === undefined ? 0 : val);
+ *     this.left = (left === undefined ? null : left);
+ *     this.right = (right === undefined ? null : right);
+ * }
+ */
+/**
+ * Search for a node with a given value in a binary search tree.
+ * @param {TreeNode} root - The root node of the binary search tree.
+ * @param {number} val - The value to search for in the binary search tree.
+ * @return {TreeNode} - The node with the given value, or null if not found.
+ */
+var searchBST = function(root, val) {
+    // Base case: If the root is null, the value is not found in the tree.
+    if (root === null) {
+        return null;
+    }
+
+    // If the value is greater than the current root node's value, search in the right subtree.
+    if (val > root.val) {
+        return searchBST(root.right, val);
+    } 
+    // If the value is less than the current root node's value, search in the left subtree.
+    else if (val < root.val) {
+        return searchBST(root.left, val);
+    } 
+    // If the value matches the current root node's value, return the root.
+    else {
+        return root;
+    }    
+};
